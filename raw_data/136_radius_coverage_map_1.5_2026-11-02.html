@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3e1a1fc19ffff41b6a7eb01fea499a4e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        width: 150px;
+        background-color: white;
+        border: 2px solid grey;
+        z-index: 9999;
+        font-size: 13px;
+        padding: 10px;
+        border-radius: 5px;
+    ">
+        <b>User Status</b><br><br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#006400;
+            border-radius:50%;
+        "></span>
+        Elite
+        <br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#7CFC00;
+            border-radius:50%;
+        "></span>
+        Healthy
+        <br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#D4A017;
+            border-radius:50%;
+        "></span>
+        Moderate
+        <br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#800020;
+            border-radius:50%;
+        "></span>
+        Low
+    </div>
+    
+    
+            <div class="folium-map" id="map_3e1a1fc19ffff41b6a7eb01fea499a4e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3e1a1fc19ffff41b6a7eb01fea499a4e = L.map(
+                "map_3e1a1fc19ffff41b6a7eb01fea499a4e",
+                {
+                    center: [33.49328596415839, 48.35702842341753],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3ed06e14aba4e64005a68ea0b3153670 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3ed06e14aba4e64005a68ea0b3153670.addTo(map_3e1a1fc19ffff41b6a7eb01fea499a4e);
+        
+    
+        function geo_json_a87dff6b9fadc327966ebba3914cad8c_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "black", "fillColor": "blue", "fillOpacity": 0.15, "weight": 1};
+            }
+        }
+
+        function geo_json_a87dff6b9fadc327966ebba3914cad8c_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_a87dff6b9fadc327966ebba3914cad8c = L.geoJson(null, {
+                onEachFeature: geo_json_a87dff6b9fadc327966ebba3914cad8c_onEachFeature,
+            
+                style: geo_json_a87dff6b9fadc327966ebba3914cad8c_styler,
+            ...{
+}
+        });
+
+        function geo_json_a87dff6b9fadc327966ebba3914cad8c_add (data) {
+            geo_json_a87dff6b9fadc327966ebba3914cad8c
+                .addData(data);
+        }
+            geo_json_a87dff6b9fadc327966ebba3914cad8c_add({"bbox": [48.332797603264446, 33.46048500298612, 48.38100532209728, 33.52139996508526], "features": [{"bbox": [48.355694111378746, 33.48149999873673, 48.35982752600368, 33.48486655706781], "geometry": {"coordinates": [[[48.355694111378746, 33.48287057532857], [48.35718134175713, 33.48149999873673], [48.359248008247555, 33.48181264646337], [48.35982752600368, 33.48349592053827], [48.35834027262606, 33.48486655706781], [48.35627352448949, 33.48455385958308], [48.355694111378746, 33.48287057532857]]], "type": "Polygon"}, "id": "0", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccd98bffff", "user_count": 2, "user_status": "Moderate"}, "type": "Feature"}, {"bbox": [48.35040248220937, 33.477508233510434, 48.35453538861734, 33.48087461971075], "geometry": {"coordinates": [[[48.35040248220937, 33.478878690233806], [48.351889666565285, 33.477508233510434], [48.353956078960714, 33.477820915039544], [48.35453538861734, 33.47950410305429], [48.35304818124618, 33.48087461971075], [48.35098168723162, 33.480561888417704], [48.35040248220937, 33.478878690233806]]], "type": "Polygon"}, "id": "1", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccd9d3ffff", "user_count": 1, "user_status": "Moderate"}, "type": "Feature"}, {"bbox": [48.36000216652353, 33.49970486094243, 48.36413699713419, 33.503072102772926], "geometry": {"coordinates": [[[48.36000216652353, 33.501075631045836], [48.361489794919734, 33.49970486094243], [48.36355716937221, 33.500017656902], [48.36413699713419, 33.501701272726656], [48.362649345740614, 33.503072102772926], [48.36058188958038, 33.50275925705001], [48.36000216652353, 33.501075631045836]]], "type": "Polygon"}, "id": "2", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8ccca0fffff", "user_count": 1, "user_status": "Elite"}, "type": "Feature"}, {"bbox": [48.35455299755821, 33.51803208554533, 48.35868880885158, 33.52139996508526], "geometry": {"coordinates": [[[48.35455299755821, 33.519402875862006], [48.35604111976284, 33.51803208554533], [48.35810898454088, 33.51834518013727], [48.35868880885158, 33.52002911482847], [48.35720066361636, 33.52139996508526], [48.35513271709895, 33.521086820709044], [48.35455299755821, 33.519402875862006]]], "type": "Polygon"}, "id": "3", "properties": {"MarketingAreaName": "Jade Kermanshah", "h3_cell": "892c8ccc873ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.37686987416509, 33.49746810284684, 48.38100532209728, 33.500835349013826], "geometry": {"coordinates": [[[48.37686987416509, 33.49883915900501], [48.378357288313225, 33.49746810284684], [48.380424971403215, 33.497780614927535], [48.38100532209728, 33.499464232899506], [48.37951788501397, 33.500835349013826], [48.377450120169684, 33.500522787198385], [48.37686987416509, 33.49883915900501]]], "type": "Polygon"}, "id": "4", "properties": {"MarketingAreaName": "Sabze Meydan", "h3_cell": "892c8c5648fffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.340730299210826, 33.466471830835566, 48.34486202619188, 33.4698377661135], "geometry": {"coordinates": [[[48.340730299210826, 33.467842044395844], [48.342217309234826, 33.466471830835566], [48.344283131946455, 33.46678453006693], [48.34486202619188, 33.468467492628946], [48.34337499312622, 33.4698377661135], [48.34130908885473, 33.46952501711009], [48.340730299210826, 33.467842044395844]]], "type": "Polygon"}, "id": "5", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccd813ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.37233279383145, 33.51274209050338, 48.37646905943861, 33.516109868255384], "geometry": {"coordinates": [[[48.37233279383145, 33.51411316373775], [48.37382061944321, 33.51274209050338], [48.37588871135747, 33.51305485129279], [48.37646905943861, 33.514738735067084], [48.374981210864036, 33.516109868255384], [48.372913037169084, 33.51579705771378], [48.37233279383145, 33.51411316373775]]], "type": "Polygon"}, "id": "6", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8cccb1bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.33899413692534, 33.461423168718916, 48.343125446797984, 33.46478891135416], "geometry": {"coordinates": [[[48.33899413692534, 33.462793318892096], [48.34048104172224, 33.461423168718916], [48.34254665588903, 33.46173583501725], [48.343125446797984, 33.46341870125856], [48.341638518956984, 33.46478891135416], [48.33957282324908, 33.464476195284355], [48.33899413692534, 33.462793318892096]]], "type": "Polygon"}, "id": "7", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccd8cfffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.352892119322206, 33.50182055253559, 48.35702676817755, 33.505187835047444], "geometry": {"coordinates": [[[48.352892119322206, 33.50319120954305], [48.35437986624803, 33.50182055253559], [48.3564471498311, 33.50213348192819], [48.35702676817755, 33.503817118102695], [48.35553899822726, 33.505187835047444], [48.35347163295295, 33.50487485587872], [48.352892119322206, 33.50319120954305]]], "type": "Polygon"}, "id": "8", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8ccca13ffff", "user_count": 2, "user_status": "Elite"}, "type": "Feature"}, {"bbox": [48.35032399111711, 33.48866554660298, 48.35445764147123, 33.49203233805393], "geometry": {"coordinates": [[[48.35032399111711, 33.49003607354967], [48.35181144519283, 33.48866554660298], [48.353878229546716, 33.488978360529835], [48.35445764147123, 33.490661751173214], [48.35297016437166, 33.49203233805393], [48.35090329836939, 33.49171947435559], [48.35032399111711, 33.49003607354967]]], "type": "Polygon"}, "id": "9", "properties": {"MarketingAreaName": "Sabze Meydan", "h3_cell": "892c8ccdd2fffff", "user_count": 1, "user_status": "Elite"}, "type": "Feature"}, {"bbox": [48.37149985123614, 33.504635912880836, 48.375635535458684, 33.508003392143635], "geometry": {"coordinates": [[[48.37149985123614, 33.5060069193646], [48.37298748927845, 33.504635912880836], [48.37505529051244, 33.504948591178945], [48.375635535458684, 33.50663232570734], [48.374147874456604, 33.508003392143635], [48.372079991466, 33.50769066409734], [48.37149985123614, 33.5060069193646]]], "type": "Polygon"}, "id": "10", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8cccb5bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.332797603264446, 33.46048500298612, 48.33692856821566, 33.463850679713374], "geometry": {"coordinates": [[[48.332797603264446, 33.461855036787455], [48.334284544115576, 33.46048500298612], [48.33634998583253, 33.46079775270019], [48.33692856821566, 33.46248058599472], [48.33544160429892, 33.463850679713374], [48.333376081062596, 33.46353788021853], [48.332797603264446, 33.461855036787455]]], "type": "Polygon"}, "id": "11", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccd8dbffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.362573031640586, 33.51286168600991, 48.36670886125077, 33.51622941862562], "geometry": {"coordinates": [[[48.362573031640586, 33.514232586153874], [48.36406095292459, 33.51286168600991], [48.36612882685541, 33.5131745973176], [48.36670886125077, 33.51485845853555], [48.36522091696883, 33.51622941862562], [48.36315296128739, 33.51591645754995], [48.362573031640586, 33.514232586153874]]], "type": "Polygon"}, "id": "12", "properties": {"MarketingAreaName": "Jade Kermanshah", "h3_cell": "892c8cccbd3ffff", "user_count": 1, "user_status": "Elite"}, "type": "Feature"}, {"bbox": [48.35992537767269, 33.5108649394619, 48.36406095292459, 33.514232586153874], "geometry": {"coordinates": [[[48.35992537767269, 33.51223577966205], [48.36141327595073, 33.5108649394619], [48.36348102270916, 33.511177867751215], [48.36406095292459, 33.51286168600991], [48.362573031640586, 33.514232586153874], [48.360505203145046, 33.51391960809366], [48.35992537767269, 33.51223577966205]]], "type": "Polygon"}, "id": "13", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8cccaa7ffff", "user_count": 2, "user_status": "Elite"}, "type": "Feature"}, {"bbox": [48.34337499312622, 33.468467492628946, 48.34750697413927, 33.471833514056144], "geometry": {"coordinates": [[[48.34337499312622, 33.4698377661135], [48.34486202619188, 33.468467492628946], [48.346927975912756, 33.468780175010956], [48.34750697413927, 33.470463180645005], [48.34601991803994, 33.471833514056144], [48.34395388674571, 33.47152078190498], [48.34337499312622, 33.4698377661135]]], "type": "Polygon"}, "id": "14", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccd817ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.37066713342918, 33.49653039916339, 48.37480223642849, 33.4998975798343], "geometry": {"coordinates": [[[48.37066713342918, 33.49790133885386], [48.372154583948465, 33.49653039916339], [48.37422209458288, 33.496842994961604], [48.37480223642849, 33.4985265801927], [48.37331476295248, 33.4998975798343], [48.371247170585534, 33.49958493429198], [48.37066713342918, 33.49790133885386]]], "type": "Polygon"}, "id": "15", "properties": {"MarketingAreaName": "Sabze Meydan", "h3_cell": "892c8c5649bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.3431356697252, 33.50193905784649, 48.347269882375635, 33.50530629494617], "geometry": {"coordinates": [[[48.3431356697252, 33.50330954179812], [48.34462351207707, 33.50193905784649], [48.34669057757271, 33.50225213758487], [48.347269882375635, 33.50393575106508], [48.345782016964215, 33.50530629494617], [48.34371486980739, 33.50499316541593], [48.3431356697252, 33.50330954179812]]], "type": "Polygon"}, "id": "16", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8ccce6fffff", "user_count": 1, "user_status": "Elite"}, "type": "Feature"}, {"bbox": [48.33776288823381, 33.50910457409593, 48.341897336509206, 33.51247204402455], "geometry": {"coordinates": [[[48.33776288823381, 33.51047500815414], [48.339250954383175, 33.50910457409593], [48.34131813769019, 33.50941782013734], [48.341897336509206, 33.511101550040536], [48.340409247275666, 33.51247204402455], [48.338341982305245, 33.512158748177896], [48.33776288823381, 33.51047500815414]]], "type": "Polygon"}, "id": "17", "properties": {"MarketingAreaName": "Jade Kermanshah", "h3_cell": "892c8ccce3bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.36113976951377, 33.46317802408054, 48.36527220457416, 33.4665439437044], "geometry": {"coordinates": [[[48.36113976951377, 33.464548579803186], [48.3626265066676, 33.46317802408054], [48.36469268339153, 33.46349037333191], [48.36527220457416, 33.46517332804139], [48.36378544445426, 33.4665439437044], [48.361719186115714, 33.466231544715896], [48.36113976951377, 33.464548579803186]]], "type": "Polygon"}, "id": "18", "properties": {"MarketingAreaName": "IranMehr", "h3_cell": "892c8ccdb83ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [48.36355716937221, 33.49864683026196, 48.367692090811666, 33.50201405172427], "geometry": {"coordinates": [[[48.36355716937221, 33.500017656902], [48.365044738487114, 33.49864683026196], [48.36711215834987, 33.49895955950266], [48.367692090811666, 33.500643165138634], [48.36620449871296, 33.50201405172427], [48.36413699713419, 33.501701272726656], [48.36355716937221, 33.500017656902]]], "type": "Polygon"}, "id": "19", "properties": {"MarketingAreaName": "Q-Shirkhargah", "h3_cell": "892c8ccca77ffff", "user_count": 1, "user_status": "Elite"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_a87dff6b9fadc327966ebba3914cad8c.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["h3_cell", "user_count", "MarketingAreaName", "user_status"];
+    let aliases = ["H3:", "Users:", "Area:", "Status:"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_a87dff6b9fadc327966ebba3914cad8c.addTo(map_3e1a1fc19ffff41b6a7eb01fea499a4e);
+        
+    
+            var feature_group_d87277044b10f7919cc7c746d3204259 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_109e20a0ce2ce34d2d2d32692346eae6 = L.circleMarker(
+                [33.48318326186431, 48.35776078994567],
+                {"bubblingMouseEvents": true, "color": "#D4A017", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D4A017", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_1a4057ede260e47e84774eed132e2dca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_15a6d0978ca1e24524465a1d68550852 = $(`<div id="html_15a6d0978ca1e24524465a1d68550852" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccd98bffff<br><b>Status:</b> Moderate<br><b>Users:</b> 2<br><b>Products:</b> 13<br><b>Super:</b> 10<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccd98bffff</div>`)[0];
+                popup_1a4057ede260e47e84774eed132e2dca.setContent(html_15a6d0978ca1e24524465a1d68550852);
+            
+        
+
+        circle_marker_109e20a0ce2ce34d2d2d32692346eae6.bindPopup(popup_1a4057ede260e47e84774eed132e2dca)
+        ;
+
+        
+    
+    
+            var circle_marker_e33d5e0266886ebeac85c96ded8f2316 = L.circleMarker(
+                [33.479191410568646, 48.35246890666696],
+                {"bubblingMouseEvents": true, "color": "#D4A017", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D4A017", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_f62168636f4f0115467933ff4a5da52e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fbfbb977c5e29f290d567647d1d9d804 = $(`<div id="html_fbfbb977c5e29f290d567647d1d9d804" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccd9d3ffff<br><b>Status:</b> Moderate<br><b>Users:</b> 1<br><b>Products:</b> 11<br><b>Super:</b> 10<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccd9d3ffff</div>`)[0];
+                popup_f62168636f4f0115467933ff4a5da52e.setContent(html_fbfbb977c5e29f290d567647d1d9d804);
+            
+        
+
+        circle_marker_e33d5e0266886ebeac85c96ded8f2316.bindPopup(popup_f62168636f4f0115467933ff4a5da52e)
+        ;
+
+        
+    
+    
+            var circle_marker_a3472d71420be8398797ec1b8c83cd13 = L.circleMarker(
+                [33.5013884658328, 48.36206955307004],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_f4140000779e37372c8304dc9272e291 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d95a3e650f098e75bd97259a205ecb8d = $(`<div id="html_d95a3e650f098e75bd97259a205ecb8d" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8ccca0fffff<br><b>Status:</b> Elite<br><b>Users:</b> 1<br><b>Products:</b> 31<br><b>Super:</b> 20<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8ccca0fffff</div>`)[0];
+                popup_f4140000779e37372c8304dc9272e291.setContent(html_d95a3e650f098e75bd97259a205ecb8d);
+            
+        
+
+        circle_marker_a3472d71420be8398797ec1b8c83cd13.bindPopup(popup_f4140000779e37372c8304dc9272e291)
+        ;
+
+        
+    
+    
+            var circle_marker_c5436bacde103176f3ae82d99079d3bf = L.circleMarker(
+                [33.519716009301106, 48.35662087442429],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_5028ac502bb27bc50ed94e80c91fe3f0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dda9f9495a4054a7846df2fac0c163d6 = $(`<div id="html_dda9f9495a4054a7846df2fac0c163d6" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_466_892c8ccc873ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 6<br><b>Super:</b> 6<br><b>City:</b> 136<br><b>Area:</b> Jade Kermanshah<br><b>H3:</b> 892c8ccc873ffff</div>`)[0];
+                popup_5028ac502bb27bc50ed94e80c91fe3f0.setContent(html_dda9f9495a4054a7846df2fac0c163d6);
+            
+        
+
+        circle_marker_c5436bacde103176f3ae82d99079d3bf.bindPopup(popup_5028ac502bb27bc50ed94e80c91fe3f0)
+        ;
+
+        
+    
+    
+            var circle_marker_7d511d5f7d4004523f5c9ba3fc2cf351 = L.circleMarker(
+                [33.49915170990832, 48.378937569389024],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_809ab03d345d51d3a48182cd6750356d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ddd905e56a44656dad7e17d595b6cf16 = $(`<div id="html_ddd905e56a44656dad7e17d595b6cf16" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_463_892c8c5648fffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 136<br><b>Area:</b> Sabze Meydan<br><b>H3:</b> 892c8c5648fffff</div>`)[0];
+                popup_809ab03d345d51d3a48182cd6750356d.setContent(html_ddd905e56a44656dad7e17d595b6cf16);
+            
+        
+
+        circle_marker_7d511d5f7d4004523f5c9ba3fc2cf351.bindPopup(popup_809ab03d345d51d3a48182cd6750356d)
+        ;
+
+        
+    
+    
+            var circle_marker_7699676cc7d9a5dd26d6546b813878e4 = L.circleMarker(
+                [33.46815478242285, 48.34279613395691],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_e9c97071496c97792ff1aa7bf6d58e81 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fb6c18f2fc6b7f636fcae0fcdb20025a = $(`<div id="html_fb6c18f2fc6b7f636fcae0fcdb20025a" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccd813ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 4<br><b>Super:</b> 4<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccd813ffff</div>`)[0];
+                popup_e9c97071496c97792ff1aa7bf6d58e81.setContent(html_fb6c18f2fc6b7f636fcae0fcdb20025a);
+            
+        
+
+        circle_marker_7699676cc7d9a5dd26d6546b813878e4.bindPopup(popup_e9c97071496c97792ff1aa7bf6d58e81)
+        ;
+
+        
+    
+    
+            var circle_marker_046ade4ecad2d3e3fb04fdc28bde6a3f = L.circleMarker(
+                [33.51442596336627, 48.37440089787469],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_e88d956f0847ff7efd56aee504eb4e37 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_939bc59ed963ff2c6499c46c6e9d8457 = $(`<div id="html_939bc59ed963ff2c6499c46c6e9d8457" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8cccb1bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8cccb1bffff</div>`)[0];
+                popup_e88d956f0847ff7efd56aee504eb4e37.setContent(html_939bc59ed963ff2c6499c46c6e9d8457);
+            
+        
+
+        circle_marker_046ade4ecad2d3e3fb04fdc28bde6a3f.bindPopup(popup_e88d956f0847ff7efd56aee504eb4e37)
+        ;
+
+        
+    
+    
+            var circle_marker_28e4da282f1906c9128300918610f7be = L.circleMarker(
+                [33.46310602398111, 48.341059763120434],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_a3f05dddd424b26e71cd893f211277b0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_290ce64845eb3febee5ba3617c9d9a57 = $(`<div id="html_290ce64845eb3febee5ba3617c9d9a57" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccd8cfffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 5<br><b>Super:</b> 5<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccd8cfffff</div>`)[0];
+                popup_a3f05dddd424b26e71cd893f211277b0.setContent(html_290ce64845eb3febee5ba3617c9d9a57);
+            
+        
+
+        circle_marker_28e4da282f1906c9128300918610f7be.bindPopup(popup_a3f05dddd424b26e71cd893f211277b0)
+        ;
+
+        
+    
+    
+            var circle_marker_652e52253d91cc531184d018d5691c6b = L.circleMarker(
+                [33.50350417776623, 48.35495941498295],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_810c500b19050be419ce94abd44b1442 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b75b75551187f7b8c513f1353b51023e = $(`<div id="html_b75b75551187f7b8c513f1353b51023e" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8ccca13ffff<br><b>Status:</b> Elite<br><b>Users:</b> 2<br><b>Products:</b> 30<br><b>Super:</b> 20<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8ccca13ffff</div>`)[0];
+                popup_810c500b19050be419ce94abd44b1442.setContent(html_b75b75551187f7b8c513f1353b51023e);
+            
+        
+
+        circle_marker_652e52253d91cc531184d018d5691c6b.bindPopup(popup_810c500b19050be419ce94abd44b1442)
+        ;
+
+        
+    
+    
+            var circle_marker_c54ac60ecc04ba5f71cbff3e1612280c = L.circleMarker(
+                [33.490348926293834, 48.3523907875373],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_0ee992fa1edd25338e80f7b7a45406d2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c94a51266090cafb86aac3bc35f9dae9 = $(`<div id="html_c94a51266090cafb86aac3bc35f9dae9" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_463_892c8ccdd2fffff<br><b>Status:</b> Elite<br><b>Users:</b> 1<br><b>Products:</b> 16<br><b>Super:</b> 8<br><b>City:</b> 136<br><b>Area:</b> Sabze Meydan<br><b>H3:</b> 892c8ccdd2fffff</div>`)[0];
+                popup_0ee992fa1edd25338e80f7b7a45406d2.setContent(html_c94a51266090cafb86aac3bc35f9dae9);
+            
+        
+
+        circle_marker_c54ac60ecc04ba5f71cbff3e1612280c.bindPopup(popup_0ee992fa1edd25338e80f7b7a45406d2)
+        ;
+
+        
+    
+    
+            var circle_marker_c90e7a6cbf18c4353590914d2ed2eb3e = L.circleMarker(
+                [33.50631963649356, 48.37356766459392],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_9b0c419a26dbfdb2c6a2dd0c1f5368bb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3b84bb4cc5d6aead94f2511d58a7b740 = $(`<div id="html_3b84bb4cc5d6aead94f2511d58a7b740" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8cccb5bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 7<br><b>Super:</b> 7<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8cccb5bffff</div>`)[0];
+                popup_9b0c419a26dbfdb2c6a2dd0c1f5368bb.setContent(html_3b84bb4cc5d6aead94f2511d58a7b740);
+            
+        
+
+        circle_marker_c90e7a6cbf18c4353590914d2ed2eb3e.bindPopup(popup_9b0c419a26dbfdb2c6a2dd0c1f5368bb)
+        ;
+
+        
+    
+    
+            var circle_marker_38957fba11054b6ca0e8c6517e0347f0 = L.circleMarker(
+                [33.462167825292106, 48.334863056994365],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_df9ec354d129fcd69be2021e1a0b3e68 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ddbeacaa59ca56783b59d88b592dc7eb = $(`<div id="html_ddbeacaa59ca56783b59d88b592dc7eb" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccd8dbffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 3<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccd8dbffff</div>`)[0];
+                popup_df9ec354d129fcd69be2021e1a0b3e68.setContent(html_ddbeacaa59ca56783b59d88b592dc7eb);
+            
+        
+
+        circle_marker_38957fba11054b6ca0e8c6517e0347f0.bindPopup(popup_df9ec354d129fcd69be2021e1a0b3e68)
+        ;
+
+        
+    
+    
+            var circle_marker_f806ef909ebc447c1f79b82203c11b01 = L.circleMarker(
+                [33.51454553630223, 48.36464091767682],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_0a533d365feecb2cfc55dde6b2ed9e5f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4cfe0d14effec03dc1c99288ec82cd80 = $(`<div id="html_4cfe0d14effec03dc1c99288ec82cd80" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_466_892c8cccbd3ffff<br><b>Status:</b> Elite<br><b>Users:</b> 1<br><b>Products:</b> 16<br><b>Super:</b> 13<br><b>City:</b> 136<br><b>Area:</b> Jade Kermanshah<br><b>H3:</b> 892c8cccbd3ffff</div>`)[0];
+                popup_0a533d365feecb2cfc55dde6b2ed9e5f.setContent(html_4cfe0d14effec03dc1c99288ec82cd80);
+            
+        
+
+        circle_marker_f806ef909ebc447c1f79b82203c11b01.bindPopup(popup_0a533d365feecb2cfc55dde6b2ed9e5f)
+        ;
+
+        
+    
+    
+            var circle_marker_b4e813727bf37f87acab793512a0a935 = L.circleMarker(
+                [33.512548746790344, 48.36199313652934],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_29abf997f1d125daa93e5b3c02c3a489 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_32130d80e6558cb3b198ace9633e3339 = $(`<div id="html_32130d80e6558cb3b198ace9633e3339" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8cccaa7ffff<br><b>Status:</b> Elite<br><b>Users:</b> 2<br><b>Products:</b> 18<br><b>Super:</b> 13<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8cccaa7ffff</div>`)[0];
+                popup_29abf997f1d125daa93e5b3c02c3a489.setContent(html_32130d80e6558cb3b198ace9633e3339);
+            
+        
+
+        circle_marker_b4e813727bf37f87acab793512a0a935.bindPopup(popup_29abf997f1d125daa93e5b3c02c3a489)
+        ;
+
+        
+    
+    
+            var circle_marker_fc7714af6a4bd24509905fe62dc0e7d1 = L.circleMarker(
+                [33.470150487292855, 48.34544095488872],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_eca9ceed724bf3d8e04044dd4b60b2a8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e31692d15ea763c0dab208c44101ea7f = $(`<div id="html_e31692d15ea763c0dab208c44101ea7f" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccd817ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 4<br><b>Super:</b> 4<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccd817ffff</div>`)[0];
+                popup_eca9ceed724bf3d8e04044dd4b60b2a8.setContent(html_e31692d15ea763c0dab208c44101ea7f);
+            
+        
+
+        circle_marker_fc7714af6a4bd24509905fe62dc0e7d1.bindPopup(popup_eca9ceed724bf3d8e04044dd4b60b2a8)
+        ;
+
+        
+    
+    
+            var circle_marker_5eba60efe65ca1bd206bd382ffc802b5 = L.circleMarker(
+                [33.498213973474606, 48.37273465618219],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_8a258829b1b5bc59e04a8f22ad6e05e0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a28f8c99ee795395dbeb44fcdae7d7b2 = $(`<div id="html_a28f8c99ee795395dbeb44fcdae7d7b2" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_463_892c8c5649bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 5<br><b>Super:</b> 2<br><b>City:</b> 136<br><b>Area:</b> Sabze Meydan<br><b>H3:</b> 892c8c5649bffff</div>`)[0];
+                popup_8a258829b1b5bc59e04a8f22ad6e05e0.setContent(html_a28f8c99ee795395dbeb44fcdae7d7b2);
+            
+        
+
+        circle_marker_5eba60efe65ca1bd206bd382ffc802b5.bindPopup(popup_8a258829b1b5bc59e04a8f22ad6e05e0)
+        ;
+
+        
+    
+    
+            var circle_marker_1c3190093d9ff2a7c6acc4af893c509f = L.circleMarker(
+                [33.5036226603686, 48.34520274727498],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_e2a99af48e6b40ca29cac83a74a28ccc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_274904e5cfbf97a827ff6f2884a7ca13 = $(`<div id="html_274904e5cfbf97a827ff6f2884a7ca13" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8ccce6fffff<br><b>Status:</b> Elite<br><b>Users:</b> 1<br><b>Products:</b> 25<br><b>Super:</b> 15<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8ccce6fffff</div>`)[0];
+                popup_e2a99af48e6b40ca29cac83a74a28ccc.setContent(html_274904e5cfbf97a827ff6f2884a7ca13);
+            
+        
+
+        circle_marker_1c3190093d9ff2a7c6acc4af893c509f.bindPopup(popup_e2a99af48e6b40ca29cac83a74a28ccc)
+        ;
+
+        
+    
+    
+            var circle_marker_b419ce106904bd04db960b9bf89c8d1b = L.circleMarker(
+                [33.510788293035866, 48.33983008358474],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_2f86f86db0fc8c9a06fb80924f6def70 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a4de0a73f44715198ca87e9865c8fd9d = $(`<div id="html_a4de0a73f44715198ca87e9865c8fd9d" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_466_892c8ccce3bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 6<br><b>Super:</b> 3<br><b>City:</b> 136<br><b>Area:</b> Jade Kermanshah<br><b>H3:</b> 892c8ccce3bffff</div>`)[0];
+                popup_2f86f86db0fc8c9a06fb80924f6def70.setContent(html_a4de0a73f44715198ca87e9865c8fd9d);
+            
+        
+
+        circle_marker_b419ce106904bd04db960b9bf89c8d1b.bindPopup(popup_2f86f86db0fc8c9a06fb80924f6def70)
+        ;
+
+        
+    
+    
+            var circle_marker_25ba14bb9da61ae7395b47983819ba08 = L.circleMarker(
+                [33.46486096784385, 48.36320595832016],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_3f00465f520cbd2840688ce66aae6a3e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2fe53e85c5642dc518b56fe173f53feb = $(`<div id="html_2fe53e85c5642dc518b56fe173f53feb" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_464_892c8ccdb83ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 2<br><b>Super:</b> 2<br><b>City:</b> 136<br><b>Area:</b> IranMehr<br><b>H3:</b> 892c8ccdb83ffff</div>`)[0];
+                popup_3f00465f520cbd2840688ce66aae6a3e.setContent(html_2fe53e85c5642dc518b56fe173f53feb);
+            
+        
+
+        circle_marker_25ba14bb9da61ae7395b47983819ba08.bindPopup(popup_3f00465f520cbd2840688ce66aae6a3e)
+        ;
+
+        
+    
+    
+            var circle_marker_99c8661ea45a541495e15a19d3ea34b7 = L.circleMarker(
+                [33.500330424968446, 48.36562460133719],
+                {"bubblingMouseEvents": true, "color": "#006400", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#006400", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_d87277044b10f7919cc7c746d3204259);
+        
+    
+        var popup_0b6259dcef8cfff3d0e988200aba43a1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e2977aaf943d684f30d039f0a3ab5ccf = $(`<div id="html_e2977aaf943d684f30d039f0a3ab5ccf" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 136_462_892c8ccca77ffff<br><b>Status:</b> Elite<br><b>Users:</b> 1<br><b>Products:</b> 31<br><b>Super:</b> 20<br><b>City:</b> 136<br><b>Area:</b> Q-Shirkhargah<br><b>H3:</b> 892c8ccca77ffff</div>`)[0];
+                popup_0b6259dcef8cfff3d0e988200aba43a1.setContent(html_e2977aaf943d684f30d039f0a3ab5ccf);
+            
+        
+
+        circle_marker_99c8661ea45a541495e15a19d3ea34b7.bindPopup(popup_0b6259dcef8cfff3d0e988200aba43a1)
+        ;
+
+        
+    
+    
+            feature_group_d87277044b10f7919cc7c746d3204259.addTo(map_3e1a1fc19ffff41b6a7eb01fea499a4e);
+        
+    
+            var feature_group_8c92b8335252555e9c8c421cf3529580 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_ec9202541b409f2ced73fb0d3c37137d = L.marker(
+                [33.47174975264126, 48.34941954422986],
+                {
+}
+            ).addTo(feature_group_8c92b8335252555e9c8c421cf3529580);
+        
+    
+            var div_icon_d9601e4d6086f911c7ce6548dd5ddc39 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size:12px;\n                    font-weight:bold;\n                    background:#ffffffdd;\n                    border:1px solid #888;\n                    border-radius:4px;\n                    padding:2px 5px;\n                    white-space:nowrap;\n                    text-align:center\"\u003e\n                    Area IranMehr\u003cbr\u003e\n                    \u003csmall\u003e8 users\u003c/small\u003e\n                \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_ec9202541b409f2ced73fb0d3c37137d.setIcon(div_icon_d9601e4d6086f911c7ce6548dd5ddc39);
+            
+    
+            var marker_890182cd1c4549dfdf0930510842f4fd = L.marker(
+                [33.515016612879734, 48.35369729189529],
+                {
+}
+            ).addTo(feature_group_8c92b8335252555e9c8c421cf3529580);
+        
+    
+            var div_icon_995297f9568992c1f4a96e47145f47c6 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size:12px;\n                    font-weight:bold;\n                    background:#ffffffdd;\n                    border:1px solid #888;\n                    border-radius:4px;\n                    padding:2px 5px;\n                    white-space:nowrap;\n                    text-align:center\"\u003e\n                    Area Jade Kermanshah\u003cbr\u003e\n                    \u003csmall\u003e3 users\u003c/small\u003e\n                \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_890182cd1c4549dfdf0930510842f4fd.setIcon(div_icon_995297f9568992c1f4a96e47145f47c6);
+            
+    
+            var marker_3ed046929a8f9826abbce71612219304 = L.marker(
+                [33.506465888904756, 48.3616411741306],
+                {
+}
+            ).addTo(feature_group_8c92b8335252555e9c8c421cf3529580);
+        
+    
+            var div_icon_d72a01a4dd00251a448d5921aad8c3ba = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size:12px;\n                    font-weight:bold;\n                    background:#ffffffdd;\n                    border:1px solid #888;\n                    border-radius:4px;\n                    padding:2px 5px;\n                    white-space:nowrap;\n                    text-align:center\"\u003e\n                    Area Q-Shirkhargah\u003cbr\u003e\n                    \u003csmall\u003e9 users\u003c/small\u003e\n                \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_3ed046929a8f9826abbce71612219304.setIcon(div_icon_d72a01a4dd00251a448d5921aad8c3ba);
+            
+    
+            var marker_dc9aca9b5b2a6bb0dbae95f7e8204559 = L.marker(
+                [33.49590486989225, 48.3680210043695],
+                {
+}
+            ).addTo(feature_group_8c92b8335252555e9c8c421cf3529580);
+        
+    
+            var div_icon_6391131347342c88456a211e7e3db9a8 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size:12px;\n                    font-weight:bold;\n                    background:#ffffffdd;\n                    border:1px solid #888;\n                    border-radius:4px;\n                    padding:2px 5px;\n                    white-space:nowrap;\n                    text-align:center\"\u003e\n                    Area Sabze Meydan\u003cbr\u003e\n                    \u003csmall\u003e3 users\u003c/small\u003e\n                \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_dc9aca9b5b2a6bb0dbae95f7e8204559.setIcon(div_icon_6391131347342c88456a211e7e3db9a8);
+            
+    
+            feature_group_8c92b8335252555e9c8c421cf3529580.addTo(map_3e1a1fc19ffff41b6a7eb01fea499a4e);
+        
+    
+            map_3e1a1fc19ffff41b6a7eb01fea499a4e.fitBounds(
+                [[33.46048500298612, 48.332797603264446], [33.52139996508526, 48.38100532209728]],
+                {}
+            );
+        
+    
+            var layer_control_c612f6df9d6ba117334310e301f36214_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_3ed06e14aba4e64005a68ea0b3153670,
+                },
+                overlays :  {
+                    "H3 Cells" : geo_json_a87dff6b9fadc327966ebba3914cad8c,
+                    "Clusters" : feature_group_d87277044b10f7919cc7c746d3204259,
+                    "Area Labels" : feature_group_8c92b8335252555e9c8c421cf3529580,
+                },
+            };
+            let layer_control_c612f6df9d6ba117334310e301f36214 = L.control.layers(
+                layer_control_c612f6df9d6ba117334310e301f36214_layers.base_layers,
+                layer_control_c612f6df9d6ba117334310e301f36214_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_3e1a1fc19ffff41b6a7eb01fea499a4e);
+
+        
+</script>
+</html>
