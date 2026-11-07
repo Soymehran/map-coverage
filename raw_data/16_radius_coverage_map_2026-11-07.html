@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_574d02aa2501b16e5923f2da552c2105 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        width: 150px;
+        background-color: white;
+        border: 2px solid grey;
+        z-index: 9999;
+        font-size: 13px;
+        padding: 10px;
+        border-radius: 5px;
+    ">
+        <b>User Status</b><br><br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#006400;
+            border-radius:50%;
+        "></span>
+        Elite
+        <br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#7CFC00;
+            border-radius:50%;
+        "></span>
+        Healthy
+        <br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#D4A017;
+            border-radius:50%;
+        "></span>
+        Moderate
+        <br>
+
+        <span style="
+            display:inline-block;
+            width:12px;
+            height:12px;
+            background:#800020;
+            border-radius:50%;
+        "></span>
+        Low
+    </div>
+    
+    
+            <div class="folium-map" id="map_574d02aa2501b16e5923f2da552c2105" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_574d02aa2501b16e5923f2da552c2105 = L.map(
+                "map_574d02aa2501b16e5923f2da552c2105",
+                {
+                    center: [35.72340818521213, 51.912914342571156],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3fccf9a116a66bd37b0a5f312bdd370f = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3fccf9a116a66bd37b0a5f312bdd370f.addTo(map_574d02aa2501b16e5923f2da552c2105);
+        
+    
+        function geo_json_eb2eee62714680f082bc7a3d4ce7c9a1_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"color": "black", "fillColor": "blue", "fillOpacity": 0.15, "weight": 1};
+            }
+        }
+
+        function geo_json_eb2eee62714680f082bc7a3d4ce7c9a1_onEachFeature(feature, layer) {
+
+            layer.on({
+            });
+        };
+        var geo_json_eb2eee62714680f082bc7a3d4ce7c9a1 = L.geoJson(null, {
+                onEachFeature: geo_json_eb2eee62714680f082bc7a3d4ce7c9a1_onEachFeature,
+            
+                style: geo_json_eb2eee62714680f082bc7a3d4ce7c9a1_styler,
+            ...{
+}
+        });
+
+        function geo_json_eb2eee62714680f082bc7a3d4ce7c9a1_add (data) {
+            geo_json_eb2eee62714680f082bc7a3d4ce7c9a1
+                .addData(data);
+        }
+            geo_json_eb2eee62714680f082bc7a3d4ce7c9a1_add({"bbox": [51.889805915468926, 35.690797750526244, 51.9359743423537, 35.743834927501965], "features": [{"bbox": [51.89646788259183, 35.73236464111021, 51.90090946619569, 35.73581593740269], "geometry": {"coordinates": [[[51.89646788259183, 35.733811188044555], [51.897969769069405, 35.73236464111021], [51.90019051136984, 35.73264368878654], [51.90090946619569, 35.734369328072745], [51.899407569252524, 35.73581593740269], [51.89718672794601, 35.735536845049204], [51.89646788259183, 35.733811188044555]]], "type": "Polygon"}, "id": "0", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3286c3ffff", "user_count": 3, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.92505628884744, 35.69997958103502, 51.929496673191224, 35.70342988641771], "geometry": {"coordinates": [[[51.92505628884744, 35.7014264467891], [51.9265570094296, 35.69997958103502], [51.92877715211011, 35.700257814466816], [51.929496673191224, 35.70198295825576], [51.92799594227411, 35.70342988641771], [51.9257757006077, 35.703151608381255], [51.92505628884744, 35.7014264467891]]], "type": "Polygon"}, "id": "1", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3291dbffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91095444918947, 35.701481186246504, 51.915394379563494, 35.704931536607866], "geometry": {"coordinates": [[[51.91095444918947, 35.70292781448605], [51.91245539136108, 35.701481186246504], [51.91467530707503, 35.70175967967114], [51.915394379563494, 35.70348484596718], [51.91389342699739, 35.704931536607866], [51.91167341233419, 35.70465299854976], [51.91095444918947, 35.70292781448605]]], "type": "Polygon"}, "id": "2", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32954bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.903130339640164, 35.73320167636742, 51.90757224979086, 35.736652998887315], "geometry": {"coordinates": [[[51.903130339640164, 35.734648344198575], [51.90463215924236, 35.73320167636742], [51.90685306480508, 35.73348061626543], [51.90757224979086, 35.7352062686573], [51.90607041975071, 35.736652998887315], [51.90384941515958, 35.73637401432501], [51.903130339640164, 35.734648344198575]]], "type": "Polygon"}, "id": "3", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32861bffff", "user_count": 2, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.90585945888674, 35.69430229192908, 51.91029866748359, 35.69775242138615], "geometry": {"coordinates": [[[51.90585945888674, 35.69574879134805], [51.907360292552, 35.69430229192908], [51.90957984739641, 35.6945808037202], [51.91029866748359, 35.69630585956885], [51.908797823404974, 35.69775242138615], [51.906578169649386, 35.69747386495488], [51.90585945888674, 35.69574879134805]]], "type": "Polygon"}, "id": "4", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32909bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.89352844776348, 35.73035995346198, 51.897969769069405, 35.733811188044555], "geometry": {"coordinates": [[[51.89352844776348, 35.731806438002266], [51.895030323763834, 35.73035995346198], [51.897250934922866, 35.73063903267574], [51.897969769069405, 35.73236464111021], [51.89646788259183, 35.733811188044555], [51.89424717244181, 35.733532064148775], [51.89352844776348, 35.731806438002266]]], "type": "Polygon"}, "id": "5", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3286dbffff", "user_count": 2, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.889805915468926, 35.7315272825772, 51.89424717244181, 35.73497855257411], "geometry": {"coordinates": [[[51.889805915468926, 35.732973708610245], [51.89130786876736, 35.7315272825772], [51.89352844776348, 35.731806438002266], [51.89424717244181, 35.733532064148775], [51.89274520865021, 35.73497855257411], [51.89052453067031, 35.73469935245905], [51.889805915468926, 35.732973708610245]]], "type": "Polygon"}, "id": "6", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32b3a7ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.9101723824619, 35.70465299854976, 51.91461251074235, 35.70810344620275], "geometry": {"coordinates": [[[51.9101723824619, 35.706099630800225], [51.91167341233419, 35.70465299854976], [51.91389342699739, 35.704931536607866], [51.91461251074235, 35.70665675155138], [51.91311147047127, 35.70810344620275], [51.91089135685087, 35.7078248635081], [51.9101723824619, 35.706099630800225]]], "type": "Polygon"}, "id": "7", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf329543ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.895684753672825, 35.735536845049204, 51.900126535296785, 35.73898823846847], "geometry": {"coordinates": [[[51.895684753672825, 35.736983395868386], [51.89718672794601, 35.735536845049204], [51.899407569252524, 35.73581593740269], [51.900126535296785, 35.737541625253954], [51.89862455055367, 35.73898823846847], [51.89640361023311, 35.73870910143478], [51.895684753672825, 35.736983395868386]]], "type": "Polygon"}, "id": "8", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3286d7ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91586269262157, 35.7233531502076, 51.92030439909865, 35.72680417189595], "geometry": {"coordinates": [[[51.91586269262157, 35.724799985591325], [51.91736410460443, 35.7233531502076], [51.91958490832745, 35.72363177214945], [51.92030439909865, 35.72535727410766], [51.91880297673445, 35.72680417189595], [51.91658207397727, 35.726525505319884], [51.91586269262157, 35.724799985591325]]], "type": "Polygon"}, "id": "9", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3295a7ffff", "user_count": 7, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.92468430031197, 35.729365519563885, 51.929126793248564, 35.732816726082014], "geometry": {"coordinates": [[[51.92468430031197, 35.73081254216586], [51.92618574340388, 35.729365519563885], [51.92840694033399, 35.72964404670744], [51.929126793248564, 35.73136964107092], [51.92762533981026, 35.732816726082014], [51.92540404380063, 35.73253815431891], [51.92468430031197, 35.73081254216586]]], "type": "Polygon"}, "id": "10", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32828bffff", "user_count": 3, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91880297673445, 35.72535727410766, 51.9232449453595, 35.72880835742899], "geometry": {"coordinates": [[[51.91880297673445, 35.72680417189595], [51.92030439909865, 35.72535727410766], [51.92252533388811, 35.72563586446312], [51.9232449453595, 35.72736139723462], [51.92174351262564, 35.72880835742899], [51.9195224787869, 35.728529722444186], [51.91880297673445, 35.72680417189595]]], "type": "Polygon"}, "id": "11", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3282d3ffff", "user_count": 4, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.890589264750595, 35.72835526515259, 51.895030323763834, 35.731806438002266], "geometry": {"coordinates": [[[51.890589264750595, 35.72980168730035], [51.892091130262116, 35.72835526515259], [51.894311610282394, 35.72863437589075], [51.895030323763834, 35.73035995346198], [51.89352844776348, 35.731806438002266], [51.89130786876736, 35.7315272825772], [51.890589264750595, 35.72980168730035]]], "type": "Polygon"}, "id": "12", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32b3afffff", "user_count": 2, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.90607041975071, 35.7352062686573, 51.910512592184865, 35.738657652828174], "geometry": {"coordinates": [[[51.90607041975071, 35.736652998887315], [51.90757224979086, 35.7352062686573], [51.909793286487755, 35.73548517698361], [51.910512592184865, 35.73721086019776], [51.90901075171837, 35.738657652828174], [51.90678961597796, 35.738378699842436], [51.90607041975071, 35.736652998887315]]], "type": "Polygon"}, "id": "13", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf328603ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91330019068638, 35.691966065466325, 51.917739527436, 35.695416123851864], "geometry": {"coordinates": [[[51.91330019068638, 35.693412681604116], [51.914800869812474, 35.691966065466325], [51.917020488726095, 35.692244425009115], [51.917739527436, 35.693969445312284], [51.91623883792847, 35.695416123851864], [51.914019120089314, 35.69513771968489], [51.91330019068638, 35.693412681604116]]], "type": "Polygon"}, "id": "14", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf329013ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.923307078684026, 35.7210164717991, 51.92774891323641, 35.724467422367205], "geometry": {"coordinates": [[[51.923307078684026, 35.72246342405438], [51.92480833590716, 35.7210164717991], [51.927029203660645, 35.72129494131549], [51.92774891323641, 35.723020407703864], [51.92624764566393, 35.724467422367205], [51.924026678861885, 35.72418890823254], [51.923307078684026, 35.72246342405438]]], "type": "Polygon"}, "id": "15", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3282cbffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.92174351262564, 35.72736139723462, 51.92618574340388, 35.73081254216586], "geometry": {"coordinates": [[[51.92174351262564, 35.72880835742899], [51.9232449453595, 35.72736139723462], [51.925466011218006, 35.72763995599065], [51.92618574340388, 35.729365519563885], [51.92468430031197, 35.73081254216586], [51.92246313538907, 35.730533938785406], [51.92174351262564, 35.72880835742899]]], "type": "Polygon"}, "id": "16", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3282d7ffff", "user_count": 2, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.917426699937515, 35.71700859768115, 51.92186801030964, 35.72045942496544], "geometry": {"coordinates": [[[51.917426699937515, 35.718455425124915], [51.918927936427046, 35.71700859768115], [51.92114854210551, 35.71728713036384], [51.92186801030964, 35.71901253511669], [51.9203667634475, 35.72045942496544], [51.9181460587507, 35.72018084765473], [51.917426699937515, 35.718455425124915]]], "type": "Polygon"}, "id": "17", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf329533ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91273376001853, 35.736042885813724, 51.917176258895665, 35.73949429610803], "geometry": {"coordinates": [[[51.91273376001853, 35.73748973693934], [51.91423552310121, 35.736042885813724], [51.916456723008416, 35.73632168631096], [51.917176258895665, 35.73804738257877], [51.915674485414286, 35.73949429610803], [51.913453186441224, 35.739215450964245], [51.91273376001853, 35.73748973693934]]], "type": "Polygon"}, "id": "18", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32863bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.92096161488573, 35.730533938785406, 51.92540404380063, 35.73398518087294], "geometry": {"coordinates": [[[51.92096161488573, 35.731980902932044], [51.92246313538907, 35.730533938785406], [51.92468430031197, 35.73081254216586], [51.92540404380063, 35.73253815431891], [51.92390251293489, 35.73398518087294], [51.92168124893969, 35.733706532864964], [51.92096161488573, 35.731980902932044]]], "type": "Polygon"}, "id": "19", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32829bffff", "user_count": 2, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.90019051136984, 35.731197083352704, 51.90463215924236, 35.734648344198575], "geometry": {"coordinates": [[[51.90019051136984, 35.73264368878654], [51.90169232052244, 35.731197083352704], [51.903913094953616, 35.73147605480937], [51.90463215924236, 35.73320167636742], [51.903130339640164, 35.734648344198575], [51.90090946619569, 35.734369328072745], [51.90019051136984, 35.73264368878654]]], "type": "Polygon"}, "id": "20", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3286cfffff", "user_count": 3, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.929785064563696, 35.736546582864605, 51.93422828006004, 35.73999800961287], "geometry": {"coordinates": [[[51.929785064563696, 35.73799373423794], [51.93128661611928, 35.736546582864605], [51.933508174310205, 35.7368250913538], [51.93422828006004, 35.73855079582759], [51.932726718177015, 35.73999800961287], [51.93050506086842, 35.73971945651083], [51.929785064563696, 35.73799373423794]]], "type": "Polygon"}, "id": "21", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3282b3ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.90234750776248, 35.73637401432501, 51.90678961597796, 35.73982543396811], "geometry": {"coordinates": [[[51.90234750776248, 35.73782068605204], [51.90384941515958, 35.73637401432501], [51.90607041975071, 35.736652998887315], [51.90678961597796, 35.738378699842436], [51.90528769813853, 35.73982543396811], [51.90306659451106, 35.73954640473841], [51.90234750776248, 35.73782068605204]]], "type": "Polygon"}, "id": "22", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf328613ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.903913094953616, 35.73002939088559, 51.90835480705542, 35.73348061626543], "geometry": {"coordinates": [[[51.903913094953616, 35.73147605480937], [51.905414826770354, 35.73002939088559], [51.90763563331258, 35.73030828612237], [51.90835480705542, 35.73203388994257], [51.90685306480508, 35.73348061626543], [51.90463215924236, 35.73320167636742], [51.903913094953616, 35.73147605480937]]], "type": "Polygon"}, "id": "23", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf328657ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.90822814039759, 35.740383384600456, 51.91267077324569, 35.743834927501965], "geometry": {"coordinates": [[[51.90822814039759, 35.74183018112628], [51.9097300686677, 35.740383384600456], [51.91195133556002, 35.740662305996544], [51.91267077324569, 35.74238806857447], [51.91116883455653, 35.743834927501965], [51.90894746859761, 35.74355596144828], [51.90822814039759, 35.74183018112628]]], "type": "Polygon"}, "id": "24", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3286abffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.899407569252524, 35.734369328072745, 51.90384941515958, 35.73782068605204], "geometry": {"coordinates": [[[51.899407569252524, 35.73581593740269], [51.90090946619569, 35.734369328072745], [51.903130339640164, 35.734648344198575], [51.90384941515958, 35.73637401432501], [51.90234750776248, 35.73782068605204], [51.900126535296785, 35.737541625253954], [51.899407569252524, 35.73581593740269]]], "type": "Polygon"}, "id": "25", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf3286c7ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.917020488726095, 35.690797750526244, 51.92145988949312, 35.69424777334688], "geometry": {"coordinates": [[[51.917020488726095, 35.692244425009115], [51.918521090566266, 35.690797750526244], [51.920740741485005, 35.6910760339446], [51.92145988949312, 35.69280103646045], [51.91995927728743, 35.69424777334688], [51.917739527436, 35.693969445312284], [51.917020488726095, 35.692244425009115]]], "type": "Polygon"}, "id": "26", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf329003ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91623883792847, 35.693969445312284, 51.92067843656883, 35.69741956548163], "geometry": {"coordinates": [[[51.91623883792847, 35.695416123851864], [51.917739527436, 35.693969445312284], [51.91995927728743, 35.69424777334688], [51.92067843656883, 35.69597282453874], [51.91917773669145, 35.69741956548163], [51.91695788789939, 35.697141192827736], [51.91623883792847, 35.695416123851864]]], "type": "Polygon"}, "id": "27", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf329017ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.894311610282394, 35.727187895247035, 51.89875273361426, 35.73063903267574], "geometry": {"coordinates": [[[51.894311610282394, 35.72863437589075], [51.89581339850092, 35.727187895247035], [51.898033910676894, 35.72746692978184], [51.89875273361426, 35.72919248963772], [51.897250934922866, 35.73063903267574], [51.895030323763834, 35.73035995346198], [51.894311610282394, 35.72863437589075]]], "type": "Polygon"}, "id": "28", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32b337ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.931532578001374, 35.715506789793565, 51.9359743423537, 35.718957571943626], "geometry": {"coordinates": [[[51.931532578001374, 35.71695385487291], [51.933033592690144, 35.715506789793565], [51.935254425340396, 35.71578506228455], [51.9359743423537, 35.71751044445252], [51.93447331735186, 35.718957571943626], [51.932252385646635, 35.718679254853406], [51.931532578001374, 35.71695385487291]]], "type": "Polygon"}, "id": "29", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf32824bffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.91995927728743, 35.69280103646045, 51.92439893992022, 35.69625112105209], "geometry": {"coordinates": [[[51.91995927728743, 35.69424777334688], [51.92145988949312, 35.69280103646045], [51.923679671337176, 35.693079288362455], [51.92439893992022, 35.69480432176062], [51.92289831736067, 35.69625112105209], [51.92067843656883, 35.69597282453874], [51.91995927728743, 35.69424777334688]]], "type": "Polygon"}, "id": "30", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf329007ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}, {"bbox": [51.92312064907584, 35.735710841597374, 51.92756353836217, 35.73916224239078], "geometry": {"coordinates": [[[51.92312064907584, 35.73715787209196], [51.92462226772488, 35.735710841597374], [51.92684366282192, 35.735989457983116], [51.92756353836217, 35.737715149487535], [51.92606190935807, 35.73916224239078], [51.923840415165635, 35.73888358137934], [51.92312064907584, 35.73715787209196]]], "type": "Polygon"}, "id": "31", "properties": {"MarketingAreaName": "Roudehen", "h3_cell": "892cf328297ffff", "user_count": 1, "user_status": "Low"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_eb2eee62714680f082bc7a3d4ce7c9a1.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = ["h3_cell", "user_count", "MarketingAreaName", "user_status"];
+    let aliases = ["H3:", "Users:", "Area:", "Status:"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  "sticky": true,
+  "className": "foliumtooltip",
+});
+                     
+    
+            geo_json_eb2eee62714680f082bc7a3d4ce7c9a1.addTo(map_574d02aa2501b16e5923f2da552c2105);
+        
+    
+            var feature_group_35b59ab9271794f061c68f7feb61f38b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_9164a4e329a901d636da4441690938f5 = L.circleMarker(
+                [35.73409027602031, 51.898688647178005],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.732050807568877, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_707b1a2a71e18ceeb147f8d86bf43459 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_71d4cd47602733f59cd965f816c6a156 = $(`<div id="html_71d4cd47602733f59cd965f816c6a156" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3286c3ffff<br><b>Status:</b> Low<br><b>Users:</b> 3<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3286c3ffff</div>`)[0];
+                popup_707b1a2a71e18ceeb147f8d86bf43459.setContent(html_71d4cd47602733f59cd965f816c6a156);
+            
+        
+
+        circle_marker_9164a4e329a901d636da4441690938f5.bindPopup(popup_707b1a2a71e18ceeb147f8d86bf43459)
+        ;
+
+        
+    
+    
+            var circle_marker_f5883ad05727d3ad13ffa0863119fbfe = L.circleMarker(
+                [35.7017047204753, 51.92727645386548],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_10ba52a80c0842e2232e38542d386a54 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_53d72891cc7eacc5409acc480efba1aa = $(`<div id="html_53d72891cc7eacc5409acc480efba1aa" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3291dbffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3291dbffff</div>`)[0];
+                popup_10ba52a80c0842e2232e38542d386a54.setContent(html_53d72891cc7eacc5409acc480efba1aa);
+            
+        
+
+        circle_marker_f5883ad05727d3ad13ffa0863119fbfe.bindPopup(popup_10ba52a80c0842e2232e38542d386a54)
+        ;
+
+        
+    
+    
+            var circle_marker_175795f45c64076cc9e3370786e84d4b = L.circleMarker(
+                [35.70320634817178, 51.9131743872049],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_b75e07f909f6e980711fa265f42e5279 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6ee3c620f26be182d7e36acf1bb16a5c = $(`<div id="html_6ee3c620f26be182d7e36acf1bb16a5c" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32954bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32954bffff</div>`)[0];
+                popup_b75e07f909f6e980711fa265f42e5279.setContent(html_6ee3c620f26be182d7e36acf1bb16a5c);
+            
+        
+
+        circle_marker_175795f45c64076cc9e3370786e84d4b.bindPopup(popup_b75e07f909f6e980711fa265f42e5279)
+        ;
+
+        
+    
+    
+            var circle_marker_1c8154053fe936d929c15afc4de349a0 = L.circleMarker(
+                [35.734927324394526, 51.90535126750678],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_04ce20a94631e3fcc785061e80e5e511 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1b75bc55c0084fb594a6d736bd97d772 = $(`<div id="html_1b75bc55c0084fb594a6d736bd97d772" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32861bffff<br><b>Status:</b> Low<br><b>Users:</b> 2<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32861bffff</div>`)[0];
+                popup_04ce20a94631e3fcc785061e80e5e511.setContent(html_1b75bc55c0084fb594a6d736bd97d772);
+            
+        
+
+        circle_marker_1c8154053fe936d929c15afc4de349a0.bindPopup(popup_04ce20a94631e3fcc785061e80e5e511)
+        ;
+
+        
+    
+    
+            var circle_marker_3f2c0fbb88cf71a6c3504029e55adc96 = L.circleMarker(
+                [35.69602734339441, 51.908079036014016],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_b8025810414dc6d876051ee133647d4d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_07f0f583e1e928ac2a0abc05255ff0e7 = $(`<div id="html_07f0f583e1e928ac2a0abc05255ff0e7" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32909bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32909bffff</div>`)[0];
+                popup_b8025810414dc6d876051ee133647d4d.setContent(html_07f0f583e1e928ac2a0abc05255ff0e7);
+            
+        
+
+        circle_marker_3f2c0fbb88cf71a6c3504029e55adc96.bindPopup(popup_b8025810414dc6d876051ee133647d4d)
+        ;
+
+        
+    
+    
+            var circle_marker_111b44287f9ab28083b540be00bc9153 = L.circleMarker(
+                [35.732085557514374, 51.89574908119906],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_0d7dbb3ae8b7af0e8e70b9b1b7061398 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_94c876a7e99f5fd6947e21cfd3a0d0cf = $(`<div id="html_94c876a7e99f5fd6947e21cfd3a0d0cf" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3286dbffff<br><b>Status:</b> Low<br><b>Users:</b> 2<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3286dbffff</div>`)[0];
+                popup_0d7dbb3ae8b7af0e8e70b9b1b7061398.setContent(html_94c876a7e99f5fd6947e21cfd3a0d0cf);
+            
+        
+
+        circle_marker_111b44287f9ab28083b540be00bc9153.bindPopup(popup_0d7dbb3ae8b7af0e8e70b9b1b7061398)
+        ;
+
+        
+    
+    
+            var circle_marker_2d33428306579a482e7747ae42c0c2e7 = L.circleMarker(
+                [35.73325290433623, 51.89202651673263],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_066fe55d49d775921ae211f3af5db15a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d32e6f25bbed34ffc582b4f45d0d6960 = $(`<div id="html_d32e6f25bbed34ffc582b4f45d0d6960" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32b3a7ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32b3a7ffff</div>`)[0];
+                popup_066fe55d49d775921ae211f3af5db15a.setContent(html_d32e6f25bbed34ffc582b4f45d0d6960);
+            
+        
+
+        circle_marker_2d33428306579a482e7747ae42c0c2e7.bindPopup(popup_066fe55d49d775921ae211f3af5db15a)
+        ;
+
+        
+    
+    
+            var circle_marker_78febf9def58359b985c6d27c2142c44 = L.circleMarker(
+                [35.70637820912311, 51.91239241942685],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_636d2d7a92c6ebdc7ddd538c47cc23f5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0911a726996c602c16bfb5f8a743218e = $(`<div id="html_0911a726996c602c16bfb5f8a743218e" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf329543ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf329543ffff</div>`)[0];
+                popup_636d2d7a92c6ebdc7ddd538c47cc23f5.setContent(html_0911a726996c602c16bfb5f8a743218e);
+            
+        
+
+        circle_marker_78febf9def58359b985c6d27c2142c44.bindPopup(popup_636d2d7a92c6ebdc7ddd538c47cc23f5)
+        ;
+
+        
+    
+    
+            var circle_marker_c9e05c82a0855e1e23544273067dfce5 = L.circleMarker(
+                [35.73726252852497, 51.89790561726534],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_6540fc8cf2c24e7b428bb14c07ef1292 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c16737439606ec837580ca8bf29a51ba = $(`<div id="html_c16737439606ec837580ca8bf29a51ba" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3286d7ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3286d7ffff</div>`)[0];
+                popup_6540fc8cf2c24e7b428bb14c07ef1292.setContent(html_c16737439606ec837580ca8bf29a51ba);
+            
+        
+
+        circle_marker_c9e05c82a0855e1e23544273067dfce5.bindPopup(popup_6540fc8cf2c24e7b428bb14c07ef1292)
+        ;
+
+        
+    
+    
+            var circle_marker_3467beaeb3da808e28735c5a1f19211a = L.circleMarker(
+                [35.72507864781596, 51.91808351867491],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.645751311064591, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_a502b27cfe15eaa1a82ba36b382b3eb7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_14bd2cb5c981d6774b97f3c3007b5408 = $(`<div id="html_14bd2cb5c981d6774b97f3c3007b5408" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3295a7ffff<br><b>Status:</b> Low<br><b>Users:</b> 7<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3295a7ffff</div>`)[0];
+                popup_a502b27cfe15eaa1a82ba36b382b3eb7.setContent(html_14bd2cb5c981d6774b97f3c3007b5408);
+            
+        
+
+        circle_marker_3467beaeb3da808e28735c5a1f19211a.bindPopup(popup_a502b27cfe15eaa1a82ba36b382b3eb7)
+        ;
+
+        
+    
+    
+            var circle_marker_b3e18ffde3c49dc06fc0a220821ce84b = L.circleMarker(
+                [35.73109110959547, 51.92690551960002],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.732050807568877, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_e9451aec09d72c958d39885e4f6c520e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fa816764a760ea67227808b7bf391368 = $(`<div id="html_fa816764a760ea67227808b7bf391368" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32828bffff<br><b>Status:</b> Low<br><b>Users:</b> 3<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32828bffff</div>`)[0];
+                popup_e9451aec09d72c958d39885e4f6c520e.setContent(html_fa816764a760ea67227808b7bf391368);
+            
+        
+
+        circle_marker_b3e18ffde3c49dc06fc0a220821ce84b.bindPopup(popup_e9451aec09d72c958d39885e4f6c520e)
+        ;
+
+        
+    
+    
+            var circle_marker_c9c9d8b96fbf7c4a41ed55b81f9639cc = L.circleMarker(
+                [35.727082802535286, 51.92102393386343],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_d37a341ef5b83e523eef5f93e65c3329 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c476a5cb2ad6b0ac577a6f43221bc034 = $(`<div id="html_c476a5cb2ad6b0ac577a6f43221bc034" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3282d3ffff<br><b>Status:</b> Low<br><b>Users:</b> 4<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3282d3ffff</div>`)[0];
+                popup_d37a341ef5b83e523eef5f93e65c3329.setContent(html_c476a5cb2ad6b0ac577a6f43221bc034);
+            
+        
+
+        circle_marker_c9c9d8b96fbf7c4a41ed55b81f9639cc.bindPopup(popup_d37a341ef5b83e523eef5f93e65c3329)
+        ;
+
+        
+    
+    
+            var circle_marker_00cb7e5029656250344fc058f0a62c46 = L.circleMarker(
+                [35.73008083833576, 51.89280976703818],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_8518ad8e396b468b28141299d3095f66 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fdebc0afcd39c149959a45673a328c38 = $(`<div id="html_fdebc0afcd39c149959a45673a328c38" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32b3afffff<br><b>Status:</b> Low<br><b>Users:</b> 2<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32b3afffff</div>`)[0];
+                popup_8518ad8e396b468b28141299d3095f66.setContent(html_fdebc0afcd39c149959a45673a328c38);
+            
+        
+
+        circle_marker_00cb7e5029656250344fc058f0a62c46.bindPopup(popup_8518ad8e396b468b28141299d3095f66)
+        ;
+
+        
+    
+    
+            var circle_marker_be3b11a2ddc44947e61b4820e006e45b = L.circleMarker(
+                [35.736931947512666, 51.9082914787607],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_3a9deee9381207eb8edb7c66e685aa29 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dfb5687b3bbe3448ea1cd1ded7c340f7 = $(`<div id="html_dfb5687b3bbe3448ea1cd1ded7c340f7" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf328603ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf328603ffff</div>`)[0];
+                popup_3a9deee9381207eb8edb7c66e685aa29.setContent(html_dfb5687b3bbe3448ea1cd1ded7c340f7);
+            
+        
+
+        circle_marker_be3b11a2ddc44947e61b4820e006e45b.bindPopup(popup_3a9deee9381207eb8edb7c66e685aa29)
+        ;
+
+        
+    
+    
+            var circle_marker_ded2ceec65c6b5bcfaa0b2700f450d7d = L.circleMarker(
+                [35.69369108139694, 51.91551983190076],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_e1a8e8a2c708af4ecb2f3c6d0973106e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_782315dc98bfb5225e20e6d64144299a = $(`<div id="html_782315dc98bfb5225e20e6d64144299a" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf329013ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf329013ffff</div>`)[0];
+                popup_e1a8e8a2c708af4ecb2f3c6d0973106e.setContent(html_782315dc98bfb5225e20e6d64144299a);
+            
+        
+
+        circle_marker_ded2ceec65c6b5bcfaa0b2700f450d7d.bindPopup(popup_e1a8e8a2c708af4ecb2f3c6d0973106e)
+        ;
+
+        
+    
+    
+            var circle_marker_bd21c8e5aae8074cab89a05a0a2d60f1 = L.circleMarker(
+                [35.722741933848404, 51.92552796878575],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_661175576b239e1a44598f06bf160023 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_216dd8b7e0a72ef9918ae949c83454b9 = $(`<div id="html_216dd8b7e0a72ef9918ae949c83454b9" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3282cbffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3282cbffff</div>`)[0];
+                popup_661175576b239e1a44598f06bf160023.setContent(html_216dd8b7e0a72ef9918ae949c83454b9);
+            
+        
+
+        circle_marker_bd21c8e5aae8074cab89a05a0a2d60f1.bindPopup(popup_661175576b239e1a44598f06bf160023)
+        ;
+
+        
+    
+    
+            var circle_marker_0843596db8f86e9cfa7c839d23afed0c = L.circleMarker(
+                [35.729086956469985, 51.92396460083284],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_447269940cfe0f361a5f4a629bea34cf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_23e75022361adbac3f1c8d7885fc2d84 = $(`<div id="html_23e75022361adbac3f1c8d7885fc2d84" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3282d7ffff<br><b>Status:</b> Low<br><b>Users:</b> 2<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3282d7ffff</div>`)[0];
+                popup_447269940cfe0f361a5f4a629bea34cf.setContent(html_23e75022361adbac3f1c8d7885fc2d84);
+            
+        
+
+        circle_marker_0843596db8f86e9cfa7c839d23afed0c.bindPopup(popup_447269940cfe0f361a5f4a629bea34cf)
+        ;
+
+        
+    
+    
+            var circle_marker_996c28afcf67465c8ba66d50fe53db41 = L.circleMarker(
+                [35.718733998082975, 51.91964732794583],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_2d8dc98eacd528a1d704161742fe4b5b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3fa4a9087f30e9760f2eacf447533b42 = $(`<div id="html_3fa4a9087f30e9760f2eacf447533b42" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf329533ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf329533ffff</div>`)[0];
+                popup_2d8dc98eacd528a1d704161742fe4b5b.setContent(html_3fa4a9087f30e9760f2eacf447533b42);
+            
+        
+
+        circle_marker_996c28afcf67465c8ba66d50fe53db41.bindPopup(popup_2d8dc98eacd528a1d704161742fe4b5b)
+        ;
+
+        
+    
+    
+            var circle_marker_b99a81b12fe5143e9d41c0fa3388ebc4 = L.circleMarker(
+                [35.7377685777341, 51.91495498225704],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_c0c55df8aa5dab9fd927006527f08d4f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5226309f4e3f49b30e3ec0281d16cb50 = $(`<div id="html_5226309f4e3f49b30e3ec0281d16cb50" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32863bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32863bffff</div>`)[0];
+                popup_c0c55df8aa5dab9fd927006527f08d4f.setContent(html_5226309f4e3f49b30e3ec0281d16cb50);
+            
+        
+
+        circle_marker_b99a81b12fe5143e9d41c0fa3388ebc4.bindPopup(popup_c0c55df8aa5dab9fd927006527f08d4f)
+        ;
+
+        
+    
+    
+            var circle_marker_49b484203edd87ab4a99bc43b495a8e4 = L.circleMarker(
+                [35.73225954660116, 51.92318280215756],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.414213562373095, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_2678816ed15420ad445dff4e09ac4a11 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b6833db161fff08a315ce454f0605e16 = $(`<div id="html_b6833db161fff08a315ce454f0605e16" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32829bffff<br><b>Status:</b> Low<br><b>Users:</b> 2<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32829bffff</div>`)[0];
+                popup_2678816ed15420ad445dff4e09ac4a11.setContent(html_b6833db161fff08a315ce454f0605e16);
+            
+        
+
+        circle_marker_49b484203edd87ab4a99bc43b495a8e4.bindPopup(popup_2678816ed15420ad445dff4e09ac4a11)
+        ;
+
+        
+    
+    
+            var circle_marker_9a2ce83eba6b4ea6b241f75fc882d2f8 = L.circleMarker(
+                [35.73292270054002, 51.90241130809572],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.732050807568877, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_8e615629e1db2b175defcd9b0eea5334 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ba34412d953f43b730e51ca6d3f2cc3b = $(`<div id="html_ba34412d953f43b730e51ca6d3f2cc3b" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3286cfffff<br><b>Status:</b> Low<br><b>Users:</b> 3<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3286cfffff</div>`)[0];
+                popup_8e615629e1db2b175defcd9b0eea5334.setContent(html_ba34412d953f43b730e51ca6d3f2cc3b);
+            
+        
+
+        circle_marker_9a2ce83eba6b4ea6b241f75fc882d2f8.bindPopup(popup_8e615629e1db2b175defcd9b0eea5334)
+        ;
+
+        
+    
+    
+            var circle_marker_363d3d9552650c53ed655a9f8408d7dd = L.circleMarker(
+                [35.73827228301906, 51.93200664513121],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_56c9cd056dcf9bc8f5c956f246fd35cd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8004c0a2eb8f6f37c3014668deef59bc = $(`<div id="html_8004c0a2eb8f6f37c3014668deef59bc" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3282b3ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3282b3ffff</div>`)[0];
+                popup_56c9cd056dcf9bc8f5c956f246fd35cd.setContent(html_8004c0a2eb8f6f37c3014668deef59bc);
+            
+        
+
+        circle_marker_363d3d9552650c53ed655a9f8408d7dd.bindPopup(popup_56c9cd056dcf9bc8f5c956f246fd35cd)
+        ;
+
+        
+    
+    
+            var circle_marker_164413083a833277c31830aed48aa6c6 = L.circleMarker(
+                [35.73809971091598, 51.90456853465776],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_23db9d1daca7b17e2b39205aa99d681e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_277e002ff2b49d186255236f8758923f = $(`<div id="html_277e002ff2b49d186255236f8758923f" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf328613ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf328613ffff</div>`)[0];
+                popup_23db9d1daca7b17e2b39205aa99d681e.setContent(html_277e002ff2b49d186255236f8758923f);
+            
+        
+
+        circle_marker_164413083a833277c31830aed48aa6c6.bindPopup(popup_23db9d1daca7b17e2b39205aa99d681e)
+        ;
+
+        
+    
+    
+            var circle_marker_811c8c221a4cab7c803b300efb2cc9d6 = L.circleMarker(
+                [35.73175499034041, 51.9061339237995],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_91d767defbb3f4cd87ba05df9a31d130 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_209ac3bc4da9a4afc790529cfae2e1e5 = $(`<div id="html_209ac3bc4da9a4afc790529cfae2e1e5" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf328657ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf328657ffff</div>`)[0];
+                popup_91d767defbb3f4cd87ba05df9a31d130.setContent(html_209ac3bc4da9a4afc790529cfae2e1e5);
+            
+        
+
+        circle_marker_811c8c221a4cab7c803b300efb2cc9d6.bindPopup(popup_91d767defbb3f4cd87ba05df9a31d130)
+        ;
+
+        
+    
+    
+            var circle_marker_9a8e6e2eaca29fe95b3f56171ed771a5 = L.circleMarker(
+                [35.74210914282617, 51.91044942961247],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_ca975381cb895cf28175b8a8303e02ae = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fefcabc23a7d7b2602267d59dc4d1a4b = $(`<div id="html_fefcabc23a7d7b2602267d59dc4d1a4b" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3286abffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3286abffff</div>`)[0];
+                popup_ca975381cb895cf28175b8a8303e02ae.setContent(html_fefcabc23a7d7b2602267d59dc4d1a4b);
+            
+        
+
+        circle_marker_9a8e6e2eaca29fe95b3f56171ed771a5.bindPopup(popup_ca975381cb895cf28175b8a8303e02ae)
+        ;
+
+        
+    
+    
+            var circle_marker_d841fa782a498be09c759a69bc7e4662 = L.circleMarker(
+                [35.73609499382905, 51.90162846499195],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_64ce11cda59734853f9d194d261a6708 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f4230791641e36de1dd740f6cd624fd6 = $(`<div id="html_f4230791641e36de1dd740f6cd624fd6" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf3286c7ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf3286c7ffff</div>`)[0];
+                popup_64ce11cda59734853f9d194d261a6708.setContent(html_f4230791641e36de1dd740f6cd624fd6);
+            
+        
+
+        circle_marker_d841fa782a498be09c759a69bc7e4662.bindPopup(popup_64ce11cda59734853f9d194d261a6708)
+        ;
+
+        
+    
+    
+            var circle_marker_6951b3d76cee1ce6dd084974cb3b8a86 = L.circleMarker(
+                [35.69252274867492, 51.91924016195453],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_5853ea6ff632ef679ac913f57939a6d8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8022bc01e24d5c2058b1f0692cd27ac0 = $(`<div id="html_8022bc01e24d5c2058b1f0692cd27ac0" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf329003ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf329003ffff</div>`)[0];
+                popup_5853ea6ff632ef679ac913f57939a6d8.setContent(html_8022bc01e24d5c2058b1f0692cd27ac0);
+            
+        
+
+        circle_marker_6951b3d76cee1ce6dd084974cb3b8a86.bindPopup(popup_5853ea6ff632ef679ac913f57939a6d8)
+        ;
+
+        
+    
+    
+            var circle_marker_0eb5d4f161973428c20cf587d331d2d9 = L.circleMarker(
+                [35.69569449213757, 51.91845861008986],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_d73615e835c63c35ba0cd79c6ba637f2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_91618df15da12e0a13660969ac481961 = $(`<div id="html_91618df15da12e0a13660969ac481961" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf329017ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf329017ffff</div>`)[0];
+                popup_d73615e835c63c35ba0cd79c6ba637f2.setContent(html_91618df15da12e0a13660969ac481961);
+            
+        
+
+        circle_marker_0eb5d4f161973428c20cf587d331d2d9.bindPopup(popup_d73615e835c63c35ba0cd79c6ba637f2)
+        ;
+
+        
+    
+    
+            var circle_marker_717c5b42ec8f21e938485ad25d523676 = L.circleMarker(
+                [35.72891345072021, 51.89653214473466],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_139f2d75acda5dcc40903e505bbcfa95 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2887de69b14641b0cb658cf618ba7856 = $(`<div id="html_2887de69b14641b0cb658cf618ba7856" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32b337ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32b337ffff</div>`)[0];
+                popup_139f2d75acda5dcc40903e505bbcfa95.setContent(html_2887de69b14641b0cb658cf618ba7856);
+            
+        
+
+        circle_marker_717c5b42ec8f21e938485ad25d523676.bindPopup(popup_139f2d75acda5dcc40903e505bbcfa95)
+        ;
+
+        
+    
+    
+            var circle_marker_e6ab51337d26bcfecf3287d3ae0e1221 = L.circleMarker(
+                [35.7172321676326, 51.93375343301752],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_5ec961906a18262335e5391087d87c5a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f241a5546532fae6ab1a4130ae5e609e = $(`<div id="html_f241a5546532fae6ab1a4130ae5e609e" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf32824bffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf32824bffff</div>`)[0];
+                popup_5ec961906a18262335e5391087d87c5a.setContent(html_f241a5546532fae6ab1a4130ae5e609e);
+            
+        
+
+        circle_marker_e6ab51337d26bcfecf3287d3ae0e1221.bindPopup(popup_5ec961906a18262335e5391087d87c5a)
+        ;
+
+        
+    
+    
+            var circle_marker_35dbb70bcee7b634fdb9585dea96d6c2 = L.circleMarker(
+                [35.694526065497406, 51.9221790814504],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_ecb5f26f72de5a174abb75de5368b68a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_db067e5f3ff89f1a4e714465d7fc9b82 = $(`<div id="html_db067e5f3ff89f1a4e714465d7fc9b82" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf329007ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 0<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf329007ffff</div>`)[0];
+                popup_ecb5f26f72de5a174abb75de5368b68a.setContent(html_db067e5f3ff89f1a4e714465d7fc9b82);
+            
+        
+
+        circle_marker_35dbb70bcee7b634fdb9585dea96d6c2.bindPopup(popup_ecb5f26f72de5a174abb75de5368b68a)
+        ;
+
+        
+    
+    
+            var circle_marker_06bcd4756e0832822190858522249508 = L.circleMarker(
+                [35.73743652877111, 51.92534206653133],
+                {"bubblingMouseEvents": true, "color": "#800020", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800020", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4.0, "stroke": true, "weight": 2}
+            ).addTo(feature_group_35b59ab9271794f061c68f7feb61f38b);
+        
+    
+        var popup_410a16fd1f74298238d1565996cbd3d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_251462b92d6e6cd5bba7faeb107718ab = $(`<div id="html_251462b92d6e6cd5bba7faeb107718ab" style="width: 100.0%; height: 100.0%;"><b>Cluster:</b> 16_763_892cf328297ffff<br><b>Status:</b> Low<br><b>Users:</b> 1<br><b>Products:</b> 3<br><b>Super:</b> 0<br><b>City:</b> 16<br><b>Area:</b> Roudehen<br><b>H3:</b> 892cf328297ffff</div>`)[0];
+                popup_410a16fd1f74298238d1565996cbd3d6.setContent(html_251462b92d6e6cd5bba7faeb107718ab);
+            
+        
+
+        circle_marker_06bcd4756e0832822190858522249508.bindPopup(popup_410a16fd1f74298238d1565996cbd3d6)
+        ;
+
+        
+    
+    
+            feature_group_35b59ab9271794f061c68f7feb61f38b.addTo(map_574d02aa2501b16e5923f2da552c2105);
+        
+    
+            var feature_group_1ab2158a2be2b42887a803a42fb49e54 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_87b5be277c51cdb2843a968e869fc9ac = L.marker(
+                [35.72568135801764, 51.91311346816151],
+                {
+}
+            ).addTo(feature_group_1ab2158a2be2b42887a803a42fb49e54);
+        
+    
+            var div_icon_f04a62cd98c1401bdef7488dd1cddace = L.divIcon({
+  "html": "\n                \u003cdiv style=\"\n                    font-size:12px;\n                    font-weight:bold;\n                    background:#ffffffdd;\n                    border:1px solid #888;\n                    border-radius:4px;\n                    padding:2px 5px;\n                    white-space:nowrap;\n                    text-align:center\"\u003e\n                    Area Roudehen\u003cbr\u003e\n                    \u003csmall\u003e52 users\u003c/small\u003e\n                \u003c/div\u003e\n                ",
+  "className": "empty",
+});
+        
+    
+                marker_87b5be277c51cdb2843a968e869fc9ac.setIcon(div_icon_f04a62cd98c1401bdef7488dd1cddace);
+            
+    
+            feature_group_1ab2158a2be2b42887a803a42fb49e54.addTo(map_574d02aa2501b16e5923f2da552c2105);
+        
+    
+            map_574d02aa2501b16e5923f2da552c2105.fitBounds(
+                [[35.690797750526244, 51.889805915468926], [35.743834927501965, 51.9359743423537]],
+                {}
+            );
+        
+    
+            var layer_control_06324eac0afe274b45632bcf36a0209b_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_3fccf9a116a66bd37b0a5f312bdd370f,
+                },
+                overlays :  {
+                    "H3 Cells" : geo_json_eb2eee62714680f082bc7a3d4ce7c9a1,
+                    "Clusters" : feature_group_35b59ab9271794f061c68f7feb61f38b,
+                    "Area Labels" : feature_group_1ab2158a2be2b42887a803a42fb49e54,
+                },
+            };
+            let layer_control_06324eac0afe274b45632bcf36a0209b = L.control.layers(
+                layer_control_06324eac0afe274b45632bcf36a0209b_layers.base_layers,
+                layer_control_06324eac0afe274b45632bcf36a0209b_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_574d02aa2501b16e5923f2da552c2105);
+
+        
+</script>
+</html>
